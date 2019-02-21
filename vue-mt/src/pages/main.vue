@@ -2,13 +2,13 @@
   <div>
     <!-- 子路由渲染-->
     <router-view/>
+    <div id="useless"></div>
     <mu-container>
       <mu-bottom-nav :value.sync="shift" id="footer">
-        <mu-bottom-nav-item value="home" title="首页" icon="home" to="/home"></mu-bottom-nav-item>
-        <mu-bottom-nav-item value="recent" title="附近" icon="room" to="/recent"></mu-bottom-nav-item>
-        <mu-bottom-nav-item value="guang" title="关注" icon="favorite" to="/guang" ></mu-bottom-nav-item>
-        <mu-bottom-nav-item value="order" title="订单" icon="add_shopping_cart" to="/order" ></mu-bottom-nav-item>
-        <mu-bottom-nav-item value="me" title="我的" icon="account_circle" to="/me" ></mu-bottom-nav-item>
+        <mu-bottom-nav-item value="/home" title="发现" icon="toys" to="/home"></mu-bottom-nav-item>
+        <mu-bottom-nav-item value="/recent" title="电视" icon="live_tv" to="/recent"></mu-bottom-nav-item>
+        <mu-bottom-nav-item value="/guang" title="我的" icon="play_circle_filled" to="/guang" ></mu-bottom-nav-item>
+        <mu-bottom-nav-item value="/me" title="账户" icon="account_circle" to="/me" ></mu-bottom-nav-item>
       </mu-bottom-nav>
     </mu-container>
   </div>
@@ -17,14 +17,24 @@
 <script>
 export default {
   data () {
-    return {
-      shift: 'home'
+    return {}
+  },
+  computed:{
+    shift(){
+      if(!this.$route.path || this.$route.path == '/'){
+        return '/home';
+      }else{
+        return this.$route.path;
+      }
     }
   }
 }
 </script>
 
 <style>
+#useless{
+  height: 60px;
+}
 #footer {
   position: fixed;
   left: 0;
